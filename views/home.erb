@@ -1,12 +1,10 @@
-<h4>Ignore me</h4>
-
-<%= 
-
-system = Sonos::System.new
-speaker = system.speakers.first
-
-@artist = speaker.now_playing[:artist]
-
-%>
-
 <h4><%= @artist %></h4>
+<h5>Service: <%= @service %></h5>
+<br>
+
+<img src="<%=@album_art_url%>">
+
+
+<h6>home.erb</h6>
+
+

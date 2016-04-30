@@ -1,7 +1,17 @@
 <div row>
+	<div column="11">
+    <h1 class="giga"><%= @title %></h1>
+  </div>
+	<div column="1">
+		<a href="https://www.musixmatch.com/search/<%= @title %>/tracks" target="_blank"><button class="button--xsm">Lyrics</button></a>
+  </div>
+</div>
+
+<hr>
+
+<div row>
 	<div column="3">
 		<h4>Artist: <%= @artist %></h4>
-		<h4>Title: <%= @title %></h4>
 		<h4>Album: <%= @album %></h4>
 	</div>
 
@@ -10,19 +20,16 @@
 	</div>
 </div>
 
-<div row>
-	<div column="12">
-		<h5>Service: <%= @service %></h5>
-		<h6>home.erb</h6>
-	</div>
-</div>
-
 
 <div row>
 	<div column="3">
-		<a href="https://www.musixmatch.com/search/<%= @title %>/tracks"><button class="button--sm">Lyrics</button></a>
 	</div>
 	<div column="9">
 	</div>
 </div>
 
+<div row>
+	<div column="12">
+		<h5>Via <%= @service %></h5>
+	</div>
+</div>

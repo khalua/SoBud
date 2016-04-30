@@ -1,20 +1,33 @@
 $(function()  {
-  console.log("ready freddy!");
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', "http://localhost:4567/refresh.json", true);
-  xhr.send();
+  console.log("ready Freddy!");
+  var xmlhttp = new XMLHttpRequest();
+  var url = "http://localhost:4567/refresh.json";
+  window.currentSong = null;
+  window.lastSong = null;
 
-  xhr.addEventListener("readystatechange", processRequest, false);
+  function getStatus() {
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
 
-  xhr.onreadystatechange = processRequest;
+    xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          var speakerStatus = JSON.parse(xmlhttp.responseText);
+          window.currentSong = speakerStatus.uri;
+          console.log(speakerStatus);
+          console.log(speakerStatus.status);
+        }
+    };
+  }
 
-  function processRequest(e) {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = JSON.parse(xhr.responseText);
-        alert(response);
+  function refresh() {
+    if (window.lastSong != null && window.currentSong != window.lastSong) {
+      console.log('fire in the hole');
     }
   }
 
-});
+  setInterval(getStatus,3000);
+  setInterval(refresh,3000);
 
+
+});
 

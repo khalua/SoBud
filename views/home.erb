@@ -1,10 +1,28 @@
-<h4><%= @artist %></h4>
-<h5>Service: <%= @service %></h5>
-<br>
+<div row>
+	<div column="3">
+		<h4>Artist: <%= @artist %></h4>
+		<h4>Title: <%= @title %></h4>
+		<h4>Album: <%= @album %></h4>
+	</div>
 
-<img src="<%=@album_art_url%>">
+	<div column="9">
+		<img src="<%=@album_art_url%>">
+	</div>
+</div>
+
+<div row>
+	<div column="12">
+		<h5>Service: <%= @service %></h5>
+		<h6>home.erb</h6>
+	</div>
+</div>
 
 
-<h6>home.erb</h6>
-
+<div row>
+	<div column="3">
+		<a href="https://www.musixmatch.com/search/<%= @title %>/tracks"><button class="button--sm">Lyrics</button></a>
+	</div>
+	<div column="9">
+	</div>
+</div>
 

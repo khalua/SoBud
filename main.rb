@@ -8,6 +8,8 @@ get '/' do
   system = Sonos::System.new
   speaker = system.speakers.first
   @artist = speaker.now_playing[:artist]
+  @title = speaker.now_playing[:title]
+  @album = speaker.now_playing[:album]
 
   if /spotify/ =~ speaker.now_playing[:uri]
     @album_art_url = speaker.now_playing[:album_art]
@@ -16,6 +18,10 @@ get '/' do
   elsif /pandora/ =~ speaker.now_playing[:uri]
     @album_art_url = speaker.now_playing[:album_art].gsub(/(^http:\/\/\d+.\d+.\d+.\d+\:\d+)/,'')
     @service = "Pandora"
+
+  elsif /prime/ =~ speaker.now_playing[:uri]
+    @album_art_url = speaker.now_playing[:album_art]
+    @service = "Amazon Prime Music"
 
   else 
     @album_art_url = "https://avatars1.githubusercontent.com/u/633390"

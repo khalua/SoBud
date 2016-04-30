@@ -2,6 +2,10 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sonos'
 require 'pry'
+require 'musix_match'
+
+MusixMatch::API::Base.api_key = ENV["MUSIX_MATCH_API_KEY"]
+
 
 
 get '/' do

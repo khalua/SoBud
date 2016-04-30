@@ -1,6 +1,6 @@
 <div row>
 	<div column="12">
-    <h1 class="giga"><%= @title %></h1>
+    <h1 class="mega"><%= @title %></h1>
   </div>
 </div>
 
@@ -11,21 +11,17 @@
 		<h4>Artist: <%= @artist %></h4>
 		<h4>Album: <%= @album %></h4>
 		<br>
-		<br>
-		<br>
 		<a href="https://www.musixmatch.com/search/<%= @title %>/tracks" target="_blank"><button class="button--lg bg--muted">Lyrics</button></a>
 	</div>
 
 	<div column="8">
-		<img src="<%=@album_art_url%>">
+		<img src="<%=@album_art_url%>" height="480" width="480">
 	</div>
 </div>
 
 
 <div row>
-	<div column="3">
-	</div>
-	<div column="9">
+	<div column="12">
 	</div>
 </div>
 

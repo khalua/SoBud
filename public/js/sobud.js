@@ -30,8 +30,8 @@ $(function()  {
   }
 
 
-  setInterval(getStatus, 5000);
-  setInterval(refresh, 5000);
+  setInterval(getStatus, 3000);
+  setInterval(refresh, 3000);
 
 });
 

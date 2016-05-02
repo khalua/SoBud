@@ -10,11 +10,13 @@ set :bind, '0.0.0.0'
 MusixMatch::API::Base.api_key = ENV["MUSIX_MATCH_API_KEY"]
 
 get '/' do
+  system = Sonos::System.new
   begin
-    system = Sonos::System.new
     speaker = system.speakers.first
   rescue
-    retry
+    @artist = "Artist X"
+    @title = "Yo Momma!"
+    @album = "Yo Momma's greatest hits"
   end
   @artist = speaker.now_playing[:artist]
   @title = speaker.now_playing[:title]
@@ -39,23 +41,19 @@ end
 
 get '/refresh.json' do
   content_type :json
+  system = Sonos::System.new
   begin
-    system = Sonos::System.new
     speaker = system.speakers.first
   rescue
-    retry
+    speaker.is_playing? == false
   end
-  
-  begin
-    if speaker.is_playing?
+
+  if speaker.is_playing?
       @uri = speaker.now_playing[:uri]
       @state = "playing"
-    else
+  else
       @uri = nil
       @state = "not_playing"
-    end
-  rescue
-      puts "OH SHIT!"
   end
 
   { :state => @state, :uri => @uri }.to_json

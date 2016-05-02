@@ -5,6 +5,8 @@ require 'pry'
 require 'musix_match'
 require 'json'
 
+set :bind, '0.0.0.0'
+
 MusixMatch::API::Base.api_key = ENV["MUSIX_MATCH_API_KEY"]
 
 get '/' do
@@ -44,6 +46,8 @@ get '/refresh.json' do
       @uri = nil
       @state = "not_playing"
     end
+  rescue
+      puts "OH SHIT!"
   end
 
   { :state => @state, :uri => @uri }.to_json

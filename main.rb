@@ -3,10 +3,9 @@ require 'sinatra/reloader' if development?
 require 'sonos'
 require 'pry'
 require 'musix_match'
+require 'json'
 
 MusixMatch::API::Base.api_key = ENV["MUSIX_MATCH_API_KEY"]
-
-
 
 get '/' do
   system = Sonos::System.new
@@ -18,21 +17,32 @@ get '/' do
   if /spotify/ =~ speaker.now_playing[:uri]
     @album_art_url = speaker.now_playing[:album_art]
     @service = "Spotify"
-
   elsif /pandora/ =~ speaker.now_playing[:uri]
     @album_art_url = speaker.now_playing[:album_art].gsub(/(^http:\/\/\d+.\d+.\d+.\d+\:\d+)/,'')
     @service = "Pandora"
-
   elsif /prime/ =~ speaker.now_playing[:uri]
     @album_art_url = speaker.now_playing[:album_art]
     @service = "Amazon Prime Music"
-
-  else 
+  else
     @album_art_url = "https://avatars1.githubusercontent.com/u/633390"
     @service = "Other"
-
   end
 
   erb	:home
+end
 
+get '/refresh.json' do
+  content_type :json
+  system = Sonos::System.new
+  speaker = system.speakers.first
+
+  if speaker.is_playing?
+    @uri = speaker.now_playing[:uri]
+    @status = "playing"
+  else
+    @uri = nil
+    @status = "not_playing"
+  end
+
+  { :status => @status, :uri => @uri }.to_json
 end

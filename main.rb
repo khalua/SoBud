@@ -38,11 +38,11 @@ get '/refresh.json' do
 
   if speaker.is_playing?
     @uri = speaker.now_playing[:uri]
-    @status = "playing"
+    @state = "playing"
   else
     @uri = nil
-    @status = "not_playing"
+    @state = "not_playing"
   end
 
-  { :status => @status, :uri => @uri }.to_json
+  { :state => @state, :uri => @uri }.to_json
 end

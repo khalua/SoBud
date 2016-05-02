@@ -36,12 +36,14 @@ get '/refresh.json' do
   system = Sonos::System.new
   speaker = system.speakers.first
 
-  if speaker.is_playing?
-    @uri = speaker.now_playing[:uri]
-    @state = "playing"
-  else
-    @uri = nil
-    @state = "not_playing"
+  begin
+    if speaker.is_playing?
+      @uri = speaker.now_playing[:uri]
+      @state = "playing"
+    else
+      @uri = nil
+      @state = "not_playing"
+    end
   end
 
   { :state => @state, :uri => @uri }.to_json

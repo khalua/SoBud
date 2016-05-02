@@ -17,9 +17,8 @@ $(function()  {
             }
           song2 = speakerStatus.uri;
           console.log(speakerStatus);
-        }
-    };
-
+    }
+    }
   }
 
   function refresh() {

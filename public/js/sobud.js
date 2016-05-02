@@ -2,8 +2,8 @@ $(function()  {
   console.log("Ready Freddy!");
   var xmlhttp = new XMLHttpRequest();
   var url = "http://localhost:4567/refresh.json";
-  var lastSong;
-  var currentSong;
+  var song1; // always current song
+  var song2; // current OR last song
 
 
   function getStatus() {
@@ -12,19 +12,26 @@ $(function()  {
     xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           var speakerStatus = JSON.parse(xmlhttp.responseText);
-          currentSong = speakerStatus.uri;
+          if (song1 === undefined) {
+            song1 = speakerStatus.uri;
+            }
+          song2 = speakerStatus.uri;
           console.log(speakerStatus);
         }
     };
-  
+
   }
 
-  function refresher() {
-    lastSong   
+  function refresh() {
+    if (song1 != undefined && song1 != song2) {
+       console.log("new song!");
+       location.reload();
+    }
   }
 
-  setInterval(getStatus,10000);
-  setInterval(wtf, 5000) 
+
+  setInterval(getStatus, 5000);
+  setInterval(refresh, 5000);
 
 });
 

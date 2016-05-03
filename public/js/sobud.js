@@ -1,7 +1,7 @@
 $(function()  {
   console.log("Ready Freddy!");
   var xmlhttp = new XMLHttpRequest();
-  var url = "http://10.0.0.55:4567/refresh.json";
+  var url = "http://localhost:4567/refresh.json";
   var song1; // always current song
   var song2; // current OR last song
   var speakerStatus;

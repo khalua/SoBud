@@ -6,6 +6,7 @@ require 'musix_match'
 require 'json'
 
 set :bind, '0.0.0.0'
+set :environment, :production #fuck off NoMethodError debug
 
 MusixMatch::API::Base.api_key = ENV["MUSIX_MATCH_API_KEY"]
 

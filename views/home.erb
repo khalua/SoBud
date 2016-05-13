@@ -1,27 +1,17 @@
 <div row>
-	<div column="12">
-    <h1 class="mega"><%= @title %></h1>
-  </div>
-</div>
-
-<hr>
-
-<div row>
-	<div column="4">
-		<h4>Artist: <%= @artist %></h4>
-		<h4>Album: <%= @album %></h4>
-		<br>
-		<a href="https://www.musixmatch.com/search/<%= @title %>/tracks" target="_blank"><button class="button--lg bg--muted">Lyrics</button></a>
+	<div column="5">
+    <h6><%= @title %></h6>
+		<h6>Artist: <%= @artist %></h6>
+		<h6>Album: <%= @album %></h6>
 	</div>
-
-	<div column="8">
-		<img src="<%=@album_art_url%>" height="480" width="480">
+	<div column="7">
+		<img src="<%=@album_art_url%>" height="180" width="180">
 	</div>
 </div>
 
-
 <div row>
 	<div column="12">
+ 		<a href="https://www.musixmatch.com/search/<%= @title %>/tracks" target="_blank">Lyrics</a>
 	</div>
 </div>
 
